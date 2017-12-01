@@ -1,1 +1,1 @@
-"./configurations.obj" "./projeto_main.obj" "../lnk_msp430f5529.cmd" -llibmath.a -llibc.a 
+"./configurations.obj" "./conversion.obj" "./lcd.obj" "./projeto_main.obj" "./serial.obj" "../lnk_msp430f5529.cmd" -llibmath.a -llibc.a 

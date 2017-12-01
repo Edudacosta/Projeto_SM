@@ -9,7 +9,10 @@ GEN_CMDS__FLAG :=
 
 ORDERED_OBJS += \
 "./configurations.obj" \
+"./conversion.obj" \
+"./lcd.obj" \
 "./projeto_main.obj" \
+"./serial.obj" \
 "../lnk_msp430f5529.cmd" \
 $(GEN_CMDS__FLAG) \
 -llibmath.a \
@@ -153,8 +156,8 @@ Projeto_SM.hex: $(EXE_OUTPUTS)
 # Other Targets
 clean:
 	-$(RM) $(BIN_OUTPUTS__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "configurations.obj" "projeto_main.obj" 
-	-$(RM) "configurations.d" "projeto_main.d" 
+	-$(RM) "configurations.obj" "conversion.obj" "lcd.obj" "projeto_main.obj" "serial.obj" 
+	-$(RM) "configurations.d" "conversion.d" "lcd.d" "projeto_main.d" "serial.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

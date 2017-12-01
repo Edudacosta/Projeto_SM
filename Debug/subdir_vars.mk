@@ -8,26 +8,44 @@ CMD_SRCS += \
 
 C_SRCS += \
 ../configurations.c \
-../projeto_main.c 
+../conversion.c \
+../lcd.c \
+../projeto_main.c \
+../serial.c 
 
 C_DEPS += \
 ./configurations.d \
-./projeto_main.d 
+./conversion.d \
+./lcd.d \
+./projeto_main.d \
+./serial.d 
 
 OBJS += \
 ./configurations.obj \
-./projeto_main.obj 
+./conversion.obj \
+./lcd.obj \
+./projeto_main.obj \
+./serial.obj 
 
 OBJS__QUOTED += \
 "configurations.obj" \
-"projeto_main.obj" 
+"conversion.obj" \
+"lcd.obj" \
+"projeto_main.obj" \
+"serial.obj" 
 
 C_DEPS__QUOTED += \
 "configurations.d" \
-"projeto_main.d" 
+"conversion.d" \
+"lcd.d" \
+"projeto_main.d" \
+"serial.d" 
 
 C_SRCS__QUOTED += \
 "../configurations.c" \
-"../projeto_main.c" 
+"../conversion.c" \
+"../lcd.c" \
+"../projeto_main.c" \
+"../serial.c" 
 
 
