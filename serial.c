@@ -12,18 +12,18 @@
 #include<serial.h>
 
 void config_I2C(void){
-    SDA_SEL |=  SDA_BIT;    // Usar módulo dedicado
-    SDA_REN |=  SDA_BIT;    // Habilitar resistor
-    SDA_OUT |=  SDA_BIT;    // Pull-up
-    SCL_SEL |=  SCL_BIT;    // Usar módulo dedicado
-    SCL_REN |=  SCL_BIT;    // Habilitar resistor
-    SCL_OUT |=  SCL_BIT;    // Pull-up
-    UCB0CTL1 |= UCSWRST;    // UCSI B0 em ressete
-    UCB0CTL0 = UCSYNC |     //Síncrono
-               UCMODE_3 |   //Modo I2C
-               UCMST;       //Mestre
-    UCB0BRW = BR100K;       //100 kbps
-    UCB0CTL1 = UCSSEL_2;   //SMCLK e remove ressete
+    SDA_SEL |=  SDA_BIT;    //  Usar módulo dedicado
+    SDA_REN |=  SDA_BIT;    //  Habilitar resistor
+    SDA_OUT |=  SDA_BIT;    //  Pull-up
+    SCL_SEL |=  SCL_BIT;    //  Usar módulo dedicado
+    SCL_REN |=  SCL_BIT;    //  Habilitar resistor
+    SCL_OUT |=  SCL_BIT;    //  Pull-up
+    UCB0CTL1 |= UCSWRST;    //  UCSI B0 em ressete
+    UCB0CTL0 = UCSYNC |     //  Síncrono
+               UCMODE_3 |   //  Modo I2C
+               UCMST;       //  Mestre
+    UCB0BRW = BR100K;       //  100 kbps
+    UCB0CTL1 = UCSSEL_2;    //  SMCLK e remove ressete
 }
 
 // Escrever dado na porta

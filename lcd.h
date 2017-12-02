@@ -25,5 +25,6 @@ void write_nibble(char nibble);
 void write_byte(char byte, int rs);
 void LCD_BL_on(void);
 void write_string(char*);
+void clear_lcd(void);
 
 #endif /* LCD_H_ */

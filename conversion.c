@@ -8,11 +8,11 @@
 #include <configurations.h>
 #include <lcd.h>
 
+// Converte código morse para um caractere
 void srch_char(void){
     if(w_size == 1){
         if(strcmp(morse, "00000") == 0) caractere = 'E';
         if(strcmp(morse, "10000") == 0) caractere = 'T';
-
     }
     if(w_size == 2){
         if(strcmp(morse, "01000") == 0) caractere = 'A';
@@ -29,7 +29,6 @@ void srch_char(void){
         if(strcmp(morse, "00000") == 0) caractere = 'S';
         if(strcmp(morse, "00100") == 0) caractere = 'U';
         if(strcmp(morse, "01100") == 0) caractere = 'W';
-
     }
     if(w_size == 4){
         if(strcmp(morse, "10000") == 0) caractere = 'B';
@@ -44,6 +43,7 @@ void srch_char(void){
         if(strcmp(morse, "10010") == 0) caractere = 'X';
         if(strcmp(morse, "10110") == 0) caractere = 'Y';
         if(strcmp(morse, "11000") == 0) caractere = 'Z';
+//        else caractere = '?';
     }
     if(w_size == 5){
         if(strcmp(morse, "11111") == 0) caractere = '0';
@@ -56,13 +56,12 @@ void srch_char(void){
         if(strcmp(morse, "11000") == 0) caractere = '7';
         if(strcmp(morse, "11100") == 0) caractere = '8';
         if(strcmp(morse, "11110") == 0) caractere = '9';
+//        else caractere = '?';
     }
-
-    write_byte(0x80 | position, 0);
-    write_byte(caractere, 1);
 
 }
 
+// Define se usuário inseriu um ponto ou um traço
 char def_morse(void){
     unsigned char signal;           // Ponto ou traço
     unsigned int count;            // Contagem com SW pressionado
@@ -73,21 +72,61 @@ char def_morse(void){
     P8OUT &= ~BIT1;
     if(count > 700 && count < 4000) signal = '1';
     else if(count > 4000){
-        form_string(' ');
-        w_size = 0;
-        position ++;
+        signal = '2';
     }
     else signal ='0';
+    __delay_cycles(10000);
     return signal;
 }
 
+// Junta os pontos e traços
 void form_morse(char signal){
-    if(w_size == 5) w_size = 0;
+    morse[w_size] = signal;
     w_size ++;
-    morse[w_size-1] = signal;
 }
 
-void form_string(char caract){
-    if(position < 33) phrase[position++] = caract;
+// Quardar string
+void form_string(void){
+    if(position < 33) phrase[position] = caractere;
 }
 
+//// Interrupção da porta P1
+//#pragma vector = 47
+//__interrupt void P1(void){
+//    unsigned int a = __even_in_range(P1IV, 0x4);
+//    switch(a){
+//    case 0: break;
+//    case 2: break;
+//    case 4:
+//        position ++;
+//        clear_morse();
+//        caractere = ' ';
+//        w_size = 0;
+//        while((P1IN&BIT1) == 0);
+//        __delay_cycles(1000000);
+//        break;
+//    default: break;
+//    }
+//}
+
+void clear_morse(void){
+    unsigned int z =0;
+    for(;z<5; z++){
+        morse[z] = '0';
+    }
+}
+
+void clear_phrase(void){
+    unsigned int z = 0;
+    for(;z < 32; z++){
+        phrase[z] = 0x0;
+    }
+}
+
+void clear_all(void){
+    clear_morse();
+    clear_phrase();
+    caractere = 0x0;
+    w_size = 0;
+    position = 0;
+}

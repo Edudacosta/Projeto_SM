@@ -3,41 +3,69 @@
 #include <configurations.h>
 #include <lcd.h>
 
+void print_string(char *);
 /**
  * main.c
  */
 int main(void){
-//    __delay_cycles(400000);
-    // Configurar
-    volatile int linha = 1;
-    char carac = 0x0;
     WDTCTL = WDTPW | WDTHOLD;   // stop watchdog timer
+    space = 0;
     config_I2C();
     init_lcd();
     write_byte(0xF,0);
-    volatile int i;
-
-    position = 0;
-    w_size = 0;
-    int z =0;
-    for(;z<5; z++){
-        morse[z] = '0';
-    }
     config_timers();
     config_sw();
-
+    clear_all();
+//    __enable_interrupt();
     while(1){
         if((P2IN&BIT1) == 0){
-        teste = def_morse();
-        form_morse(teste);
-        srch_char();
-        if(w_size == 5){
-            form_string(caractere);
-//            write_byte(caractere, 1);
+            space = 0;
+            p_or_t = def_morse();
+            if(p_or_t != '2'){
+                form_morse(p_or_t);
+                srch_char();
+                form_string();
+                print_string(phrase);
+            }
+            else{
+                  clear_all();
+                  clear_lcd();
+                  print_string(phrase);
+            }
+
         }
-        __delay_cycles(30000);
+        if((P1IN&BIT1) == 0){
+            next_char();
         }
-        }
-//    return 0;
+    }
 }
 
+void print_string(char *string){
+    unsigned int i = 0;
+    write_byte(0x80,0);
+    while(string[i] != 0 && i < 16){
+        write_byte(string[i], 1);
+        i++;
+    }
+    if(i == 16){
+        write_byte(0xC0, 0);
+        while(string[i] != 0 && i < 32){
+            write_byte(string[i], 1);
+            i++;
+        }
+    }
+}
+
+void next_char(void){
+    if(space > 0){
+        form_string();
+        print_string(phrase);
+    }
+    space++;
+    position++;
+    clear_morse();
+    caractere = ' ';
+    w_size = 0;
+    while((P1IN&BIT1) == 0);
+    __delay_cycles(100000);
+}

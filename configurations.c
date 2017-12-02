@@ -8,15 +8,27 @@
 
 // Configurar chaves
 void config_sw(void){
+    // SW1 - inserir morse
     P2DIR &= ~ BIT1;
     P2REN |= BIT1;
     P2OUT |= BIT1;
 //    P2IE |= BIT1;
 //    P2IES |= BIT1;
 
+    // SW2 - Espaço ou Enviar
+    P1DIR &= BIT1;
+    P1REN |= BIT1;
+    P1OUT |= BIT1;
+//    P1IE |= BIT1;
+//    P1IES |= BIT1;
+
     // LED verde
     P4DIR |= BIT7;
-    P4OUT |- BIT7;
+    P4OUT |= BIT7;
+
+    //LED vermelho
+    P1DIR |= BIT0;
+    P1OUT &= ~BIT0;
 
     // buzzer
     P8DIR |= BIT1;

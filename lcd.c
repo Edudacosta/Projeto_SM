@@ -48,3 +48,15 @@ void init_lcd(void){
     write_byte((BIT2|BIT1), 0);         // Definir modo de entrada(I/D e S) - Instrução: 0000 01IS [0000 0110]
     __delay_cycles(10);                 // (display parado cursor anda)
 }
+
+//void print_string(char *string, int size){
+//    int t = size;
+//    for(;t>=0; i--){
+//        write_byte(string[t],0x1);
+//    }
+//}
+
+void clear_lcd(void){
+    write_byte(1, 0);
+}
+
