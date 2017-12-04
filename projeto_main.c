@@ -94,6 +94,7 @@ __interrupt void DMA0(void){
         clear_lcd();
         delay(10);
         print_string("Nova mensagem...");
+        buzzer(1);
         delay(5000);
         clear_lcd();
         print_string(rcvd_phrase);

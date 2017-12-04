@@ -1,10 +1,10 @@
 ******************************************************************************
                   MSP430 Linker Unix v16.9.3                   
 ******************************************************************************
->> Linked Sun Dec  3 23:30:17 2017
+>> Linked Mon Dec  4 14:04:10 2017
 
 OUTPUT FILE NAME:   <Projeto_SM.out>
-ENTRY POINT SYMBOL: "_c_int00_noargs_noexit"  address: 0000444c
+ENTRY POINT SYMBOL: "_c_int00_noargs_noexit"  address: 00004452
 
 
 MEMORY CONFIGURATION
@@ -20,7 +20,7 @@ MEMORY CONFIGURATION
   INFOA                 00001980   00000080  00000000  00000080  RWIX
   USBRAM                00001c00   00000800  00000000  00000800  RWIX
   RAM                   00002400   00002000  0000016e  00001e92  RWIX
-  FLASH                 00004400   0000bb80  0000012a  0000ba56  RWIX
+  FLASH                 00004400   0000bb80  00000130  0000ba50  RWIX
   INT00                 0000ff80   00000002  00000000  00000002  RWIX
   INT01                 0000ff82   00000002  00000000  00000002  RWIX
   INT02                 0000ff84   00000002  00000000  00000002  RWIX
@@ -85,7 +85,7 @@ MEMORY CONFIGURATION
   INT61                 0000fffa   00000002  00000002  00000000  RWIX
   INT62                 0000fffc   00000002  00000002  00000000  RWIX
   RESET                 0000fffe   00000002  00000002  00000000  RWIX
-  FLASH2                00010000   00014400  00000c32  000137ce  RWIX
+  FLASH2                00010000   00014400  00000cce  00013732  RWIX
 
 
 SECTION ALLOCATION MAP
@@ -109,24 +109,24 @@ section   page    origin      length       input sections
                   00004364    0000009c     --HOLE--
 
 .text:_isr 
-*          0    00004400    0000006e     
-                  00004400    0000004c     projeto_main.obj (.text:_isr:DMA0)
-                  0000444c    0000001a     rts430x_lc_rd_eabi.lib : boot_special.obj (.text:_isr:_c_int00_noargs_noexit)
-                  00004466    00000008                            : isr_trap.obj (.text:_isr:__TI_ISR_TRAP)
+*          0    00004400    00000074     
+                  00004400    00000052     projeto_main.obj (.text:_isr:DMA0)
+                  00004452    0000001a     rts430x_lc_rd_eabi.lib : boot_special.obj (.text:_isr:_c_int00_noargs_noexit)
+                  0000446c    00000008                            : isr_trap.obj (.text:_isr:__TI_ISR_TRAP)
 
-.cinit     0    00004518    00000012     
-                  00004518    00000006     (.cinit..bss.load) [load image, compression = zero_init]
-                  0000451e    00000004     (__TI_handler_table)
-                  00004522    00000008     (__TI_cinit_table)
+.cinit     0    0000451e    00000012     
+                  0000451e    00000006     (.cinit..bss.load) [load image, compression = zero_init]
+                  00004524    00000004     (__TI_handler_table)
+                  00004528    00000008     (__TI_cinit_table)
 
 .binit     0    00004400    00000000     
 
 .init_array 
 *          0    00004400    00000000     UNINITIALIZED
 
-.const     0    0000446e    000000aa     
-                  0000446e    00000098     conversion.obj (.const:.string)
-                  00004506    00000012     projeto_main.obj (.const:.string)
+.const     0    00004474    000000aa     
+                  00004474    00000098     conversion.obj (.const:.string)
+                  0000450c    00000012     projeto_main.obj (.const:.string)
 
 RTC        0    0000ffd2    00000002     
                   0000ffd2    00000002     rts430x_lc_rd_eabi.lib : int41.obj (.int41)
@@ -205,60 +205,60 @@ SYSNMI     0    0000fffc    00000002
 .reset     0    0000fffe    00000002     
                   0000fffe    00000002     rts430x_lc_rd_eabi.lib : boot.obj (.reset)
 
-.text      0    00010000    00000c32     
+.text      0    00010000    00000cce     
                   00010000    00000374     conversion.obj (.text:srch_char)
-                  00010374    0000017a     conversion.obj (.text:char_to_morse)
-                  000104ee    000000c4     lcd.obj (.text:init_lcd)
-                  000105b2    00000082     rts430x_lc_rd_eabi.lib : autoinit_wdt.obj (.text:_auto_init_hold_wdt)
-                  00010634    00000082     conversion.obj (.text:insert_sw2)
-                  000106b6    00000074     lcd.obj (.text:print_string)
-                  0001072a    00000072     projeto_main.obj (.text:insert_sw1)
-                  0001079c    00000066     rts430x_lc_rd_eabi.lib : cpy_tbl.obj (.text:copy_in)
-                  00010802    00000048     conversion.obj (.text:def_morse)
-                  0001084a    00000040     serial.obj (.text:PCF_write)
-                  0001088a    00000040     serial.obj (.text:config_uart)
-                  000108ca    00000036     configurations.obj (.text:config_sw)
-                  00010900    00000032     conversion.obj (.text:morse_buzzer)
-                  00010932    00000030     serial.obj (.text:config_I2C)
-                  00010962    00000030     lcd.obj (.text:write_byte)
-                  00010992    0000002e     conversion.obj (.text:form_morse_rcv)
-                  000109c0    0000002c     conversion.obj (.text:buzzer)
-                  000109ec    0000002c     projeto_main.obj (.text:init_system)
-                  00010a18    0000002c     rts430x_lc_rd_eabi.lib : div16s.obj (.text)
-                  00010a44    00000028     projeto_main.obj (.text:main)
-                  00010a6c    00000026     conversion.obj (.text:m_rcvd_buzzer)
-                  00010a92    00000024     projeto_main.obj (.text:config_dma)
-                  00010ab6    00000024     rts430x_lc_rd_eabi.lib : copy_zero_init.obj (.text:decompress:ZI:__TI_zero_init)
-                  00010ada    00000024     lcd.obj (.text:write_nibble)
-                  00010afe    00000022     serial.obj (.text:send_string)
-                  00010b20    00000020     configurations.obj (.text:config_timers)
-                  00010b40    0000001c     rts430x_lc_rd_eabi.lib : strcmp.obj (.text:strcmp)
-                  00010b5c    00000018     conversion.obj (.text:clear_all)
-                  00010b74    00000018     conversion.obj (.text:clear_morse)
-                  00010b8c    00000018     rts430x_lc_rd_eabi.lib : mult16_f5hw.obj (.text)
-                  00010ba4    00000016     conversion.obj (.text:clear_phrase)
-                  00010bba    00000016     configurations.obj (.text:delay)
-                  00010bd0    00000016     rts430x_lc_rd_eabi.lib : div16u.obj (.text)
-                  00010be6    00000014     conversion.obj (.text:form_string)
-                  00010bfa    00000014     rts430x_lc_rd_eabi.lib : memcpy.obj (.text:memcpy)
-                  00010c0e    0000000e     conversion.obj (.text:form_morse)
-                  00010c1c    0000000a     lcd.obj (.text:clear_lcd)
-                  00010c26    00000006     rts430x_lc_rd_eabi.lib : exit.obj (.text:abort)
-                  00010c2c    00000004                            : pre_init.obj (.text:_system_pre_init)
-                  00010c30    00000002                            : startup.obj (.text:_system_post_cinit)
+                  00010374    00000216     conversion.obj (.text:char_to_morse)
+                  0001058a    000000c4     lcd.obj (.text:init_lcd)
+                  0001064e    00000082     rts430x_lc_rd_eabi.lib : autoinit_wdt.obj (.text:_auto_init_hold_wdt)
+                  000106d0    00000082     conversion.obj (.text:insert_sw2)
+                  00010752    00000074     lcd.obj (.text:print_string)
+                  000107c6    00000072     projeto_main.obj (.text:insert_sw1)
+                  00010838    00000066     rts430x_lc_rd_eabi.lib : cpy_tbl.obj (.text:copy_in)
+                  0001089e    00000048     conversion.obj (.text:def_morse)
+                  000108e6    00000040     serial.obj (.text:PCF_write)
+                  00010926    00000040     serial.obj (.text:config_uart)
+                  00010966    00000036     configurations.obj (.text:config_sw)
+                  0001099c    00000032     conversion.obj (.text:morse_buzzer)
+                  000109ce    00000030     serial.obj (.text:config_I2C)
+                  000109fe    00000030     lcd.obj (.text:write_byte)
+                  00010a2e    0000002e     conversion.obj (.text:form_morse_rcv)
+                  00010a5c    0000002c     conversion.obj (.text:buzzer)
+                  00010a88    0000002c     projeto_main.obj (.text:init_system)
+                  00010ab4    0000002c     rts430x_lc_rd_eabi.lib : div16s.obj (.text)
+                  00010ae0    00000028     projeto_main.obj (.text:main)
+                  00010b08    00000026     conversion.obj (.text:m_rcvd_buzzer)
+                  00010b2e    00000024     projeto_main.obj (.text:config_dma)
+                  00010b52    00000024     rts430x_lc_rd_eabi.lib : copy_zero_init.obj (.text:decompress:ZI:__TI_zero_init)
+                  00010b76    00000024     lcd.obj (.text:write_nibble)
+                  00010b9a    00000022     serial.obj (.text:send_string)
+                  00010bbc    00000020     configurations.obj (.text:config_timers)
+                  00010bdc    0000001c     rts430x_lc_rd_eabi.lib : strcmp.obj (.text:strcmp)
+                  00010bf8    00000018     conversion.obj (.text:clear_all)
+                  00010c10    00000018     conversion.obj (.text:clear_morse)
+                  00010c28    00000018     rts430x_lc_rd_eabi.lib : mult16_f5hw.obj (.text)
+                  00010c40    00000016     conversion.obj (.text:clear_phrase)
+                  00010c56    00000016     configurations.obj (.text:delay)
+                  00010c6c    00000016     rts430x_lc_rd_eabi.lib : div16u.obj (.text)
+                  00010c82    00000014     conversion.obj (.text:form_string)
+                  00010c96    00000014     rts430x_lc_rd_eabi.lib : memcpy.obj (.text:memcpy)
+                  00010caa    0000000e     conversion.obj (.text:form_morse)
+                  00010cb8    0000000a     lcd.obj (.text:clear_lcd)
+                  00010cc2    00000006     rts430x_lc_rd_eabi.lib : exit.obj (.text:abort)
+                  00010cc8    00000004                            : pre_init.obj (.text:_system_pre_init)
+                  00010ccc    00000002                            : startup.obj (.text:_system_post_cinit)
 
 MODULE SUMMARY
 
        Module               code   ro data   rw data
        ------               ----   -------   -------
     ./
-       conversion.obj       1746   152       206    
+       conversion.obj       1902   152       206    
        lcd.obj              406    0         0      
-       projeto_main.obj     310    20        0      
+       projeto_main.obj     316    20        0      
        serial.obj           210    0         0      
        configurations.obj   108    0         0      
     +--+--------------------+------+---------+---------+
-       Total:               2780   172       206    
+       Total:               2942   172       206    
                                                     
     /home/eduardo/ti/ccsv7/tools/compiler/ti-cgt-msp430_16.9.3.LTS/lib/rts430x_lc_rd_eabi.lib
        autoinit_wdt.obj     130    0         0      
@@ -302,18 +302,18 @@ MODULE SUMMARY
        Stack:               0      0         160    
        Linker Generated:    0      18        0      
     +--+--------------------+------+---------+---------+
-       Grand Total:         3232   234       366    
+       Grand Total:         3394   234       366    
 
 
 LINKER GENERATED COPY TABLES
 
-__TI_cinit_table @ 00004522 records: 1, size/record: 8, table size: 8
-	.bss: load addr=00004518, load size=00000006 bytes, run addr=00002400, run size=000000ce bytes, compression=zero_init
+__TI_cinit_table @ 00004528 records: 1, size/record: 8, table size: 8
+	.bss: load addr=0000451e, load size=00000006 bytes, run addr=00002400, run size=000000ce bytes, compression=zero_init
 
 
 LINKER GENERATED HANDLER TABLE
 
-__TI_handler_table @ 0000451e records: 1, size/record: 4, table size: 4
+__TI_handler_table @ 00004524 records: 1, size/record: 4, table size: 4
 	index: 0, handler: __TI_zero_init
 
 
@@ -403,7 +403,7 @@ address   name
 00000732  ADC12MEM9               
 00000733  ADC12MEM9_H             
 00000732  ADC12MEM9_L             
-00010c26  C$$EXIT                 
+00010cc2  C$$EXIT                 
 000008c0  CBCTL0                  
 000008c1  CBCTL0_H                
 000008c0  CBCTL0_L                
@@ -603,7 +603,7 @@ address   name
 00000248  PCDS                    
 00000249  PCDS_H                  
 00000248  PCDS_L                  
-0001084a  PCF_write               
+000108e6  PCF_write               
 00000240  PCIN                    
 00000241  PCIN_H                  
 00000240  PCIN_L                  
@@ -1076,13 +1076,13 @@ address   name
 000000a0  __STACK_SIZE            
 UNDEFED   __TI_BINIT_Base         
 UNDEFED   __TI_BINIT_Limit        
-00004522  __TI_CINIT_Base         
-0000452a  __TI_CINIT_Limit        
-0000451e  __TI_Handler_Table_Base 
-00004522  __TI_Handler_Table_Limit
+00004528  __TI_CINIT_Base         
+00004530  __TI_CINIT_Limit        
+00004524  __TI_Handler_Table_Base 
+00004528  __TI_Handler_Table_Limit
 UNDEFED   __TI_INITARRAY_Base     
 UNDEFED   __TI_INITARRAY_Limit    
-00004466  __TI_ISR_TRAP           
+0000446c  __TI_ISR_TRAP           
 0000ffd2  __TI_int41              
 0000ffd4  __TI_int42              
 0000ffd6  __TI_int43              
@@ -1108,60 +1108,60 @@ UNDEFED   __TI_INITARRAY_Limit
 ffffffff  __TI_pprof_out_hndl     
 ffffffff  __TI_prof_data_size     
 ffffffff  __TI_prof_data_start    
-00010ab6  __TI_zero_init          
+00010b52  __TI_zero_init          
 ffffffff  __c_args__              
-00010a18  __mspabi_divi           
-00010bd0  __mspabi_divu           
-00010b8c  __mspabi_mpyi_f5hw      
-00010a18  __mspabi_remi           
-00010bd0  __mspabi_remu           
-000105b2  _auto_init_hold_wdt     
-0000444c  _c_int00_noargs_noexit  
+00010ab4  __mspabi_divi           
+00010c6c  __mspabi_divu           
+00010c28  __mspabi_mpyi_f5hw      
+00010ab4  __mspabi_remi           
+00010c6c  __mspabi_remu           
+0001064e  _auto_init_hold_wdt     
+00004452  _c_int00_noargs_noexit  
 0000fffe  _reset_vector           
 00004360  _stack                  
-00010c30  _system_post_cinit      
-00010c2c  _system_pre_init        
-00010c26  abort                   
-000109c0  buzzer                  
+00010ccc  _system_post_cinit      
+00010cc8  _system_pre_init        
+00010cc2  abort                   
+00010a5c  buzzer                  
 000024cc  caractere               
 00010374  char_to_morse           
-00010b5c  clear_all               
-00010c1c  clear_lcd               
-00010b74  clear_morse             
-00010ba4  clear_phrase            
-00010932  config_I2C              
-00010a92  config_dma              
-000108ca  config_sw               
-00010b20  config_timers           
-0001088a  config_uart             
-0001079c  copy_in                 
-00010802  def_morse               
-00010bba  delay                   
-00010c0e  form_morse              
-00010992  form_morse_rcv          
-00010be6  form_string             
-000104ee  init_lcd                
-000109ec  init_system             
-0001072a  insert_sw1              
-00010634  insert_sw2              
-00010a6c  m_rcvd_buzzer           
-00010a44  main                    
-00010bfa  memcpy                  
+00010bf8  clear_all               
+00010cb8  clear_lcd               
+00010c10  clear_morse             
+00010c40  clear_phrase            
+000109ce  config_I2C              
+00010b2e  config_dma              
+00010966  config_sw               
+00010bbc  config_timers           
+00010926  config_uart             
+00010838  copy_in                 
+0001089e  def_morse               
+00010c56  delay                   
+00010caa  form_morse              
+00010a2e  form_morse_rcv          
+00010c82  form_string             
+0001058a  init_lcd                
+00010a88  init_system             
+000107c6  insert_sw1              
+000106d0  insert_sw2              
+00010b08  m_rcvd_buzzer           
+00010ae0  main                    
+00010c96  memcpy                  
 000024c0  morse                   
-00010900  morse_buzzer            
+0001099c  morse_buzzer            
 00002400  morse_rcv               
 000024cd  p_or_t                  
 00002480  phrase                  
 000024c6  position                
-000106b6  print_string            
+00010752  print_string            
 000024a0  rcvd_phrase             
-00010afe  send_string             
+00010b9a  send_string             
 000024c8  space                   
 00010000  srch_char               
-00010b40  strcmp                  
+00010bdc  strcmp                  
 000024ca  w_size                  
-00010962  write_byte              
-00010ada  write_nibble            
+000109fe  write_byte              
+00010b76  write_nibble            
 
 
 GLOBAL SYMBOLS: SORTED BY Symbol Address 
@@ -1929,12 +1929,12 @@ address   name
 00004360  _stack                  
 00004400  DMA0                    
 00004400  __STACK_END             
-0000444c  _c_int00_noargs_noexit  
-00004466  __TI_ISR_TRAP           
-0000451e  __TI_Handler_Table_Base 
-00004522  __TI_CINIT_Base         
-00004522  __TI_Handler_Table_Limit
-0000452a  __TI_CINIT_Limit        
+00004452  _c_int00_noargs_noexit  
+0000446c  __TI_ISR_TRAP           
+00004524  __TI_Handler_Table_Base 
+00004528  __TI_CINIT_Base         
+00004528  __TI_Handler_Table_Limit
+00004530  __TI_CINIT_Limit        
 0000ffd2  __TI_int41              
 0000ffd4  __TI_int42              
 0000ffd6  __TI_int43              
@@ -1960,47 +1960,47 @@ address   name
 0000fffe  _reset_vector           
 00010000  srch_char               
 00010374  char_to_morse           
-000104ee  init_lcd                
-000105b2  _auto_init_hold_wdt     
-00010634  insert_sw2              
-000106b6  print_string            
-0001072a  insert_sw1              
-0001079c  copy_in                 
-00010802  def_morse               
-0001084a  PCF_write               
-0001088a  config_uart             
-000108ca  config_sw               
-00010900  morse_buzzer            
-00010932  config_I2C              
-00010962  write_byte              
-00010992  form_morse_rcv          
-000109c0  buzzer                  
-000109ec  init_system             
-00010a18  __mspabi_divi           
-00010a18  __mspabi_remi           
-00010a44  main                    
-00010a6c  m_rcvd_buzzer           
-00010a92  config_dma              
-00010ab6  __TI_zero_init          
-00010ada  write_nibble            
-00010afe  send_string             
-00010b20  config_timers           
-00010b40  strcmp                  
-00010b5c  clear_all               
-00010b74  clear_morse             
-00010b8c  __mspabi_mpyi_f5hw      
-00010ba4  clear_phrase            
-00010bba  delay                   
-00010bd0  __mspabi_divu           
-00010bd0  __mspabi_remu           
-00010be6  form_string             
-00010bfa  memcpy                  
-00010c0e  form_morse              
-00010c1c  clear_lcd               
-00010c26  C$$EXIT                 
-00010c26  abort                   
-00010c2c  _system_pre_init        
-00010c30  _system_post_cinit      
+0001058a  init_lcd                
+0001064e  _auto_init_hold_wdt     
+000106d0  insert_sw2              
+00010752  print_string            
+000107c6  insert_sw1              
+00010838  copy_in                 
+0001089e  def_morse               
+000108e6  PCF_write               
+00010926  config_uart             
+00010966  config_sw               
+0001099c  morse_buzzer            
+000109ce  config_I2C              
+000109fe  write_byte              
+00010a2e  form_morse_rcv          
+00010a5c  buzzer                  
+00010a88  init_system             
+00010ab4  __mspabi_divi           
+00010ab4  __mspabi_remi           
+00010ae0  main                    
+00010b08  m_rcvd_buzzer           
+00010b2e  config_dma              
+00010b52  __TI_zero_init          
+00010b76  write_nibble            
+00010b9a  send_string             
+00010bbc  config_timers           
+00010bdc  strcmp                  
+00010bf8  clear_all               
+00010c10  clear_morse             
+00010c28  __mspabi_mpyi_f5hw      
+00010c40  clear_phrase            
+00010c56  delay                   
+00010c6c  __mspabi_divu           
+00010c6c  __mspabi_remu           
+00010c82  form_string             
+00010c96  memcpy                  
+00010caa  form_morse              
+00010cb8  clear_lcd               
+00010cc2  C$$EXIT                 
+00010cc2  abort                   
+00010cc8  _system_pre_init        
+00010ccc  _system_post_cinit      
 ffffffff  __TI_pprof_out_hndl     
 ffffffff  __TI_prof_data_size     
 ffffffff  __TI_prof_data_start    
