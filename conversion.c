@@ -32,31 +32,31 @@ void srch_char(void){
     }
     if(w_size == 4){
         if(strcmp(morse, "10000") == 0) caractere = 'B';
-        if(strcmp(morse, "10100") == 0) caractere = 'C';
-        if(strcmp(morse, "00100") == 0) caractere = 'F';
-        if(strcmp(morse, "00000") == 0) caractere = 'H';
-        if(strcmp(morse, "01110") == 0) caractere = 'J';
-        if(strcmp(morse, "01000") == 0) caractere = 'L';
-        if(strcmp(morse, "10010") == 0) caractere = 'P';
-        if(strcmp(morse, "11010") == 0) caractere = 'Q';
-        if(strcmp(morse, "00010") == 0) caractere = 'V';
-        if(strcmp(morse, "10010") == 0) caractere = 'X';
-        if(strcmp(morse, "10110") == 0) caractere = 'Y';
-        if(strcmp(morse, "11000") == 0) caractere = 'Z';
-//        else caractere = '?';
+        else if(strcmp(morse, "10100") == 0) caractere = 'C';
+        else if(strcmp(morse, "00100") == 0) caractere = 'F';
+        else if(strcmp(morse, "00000") == 0) caractere = 'H';
+        else if(strcmp(morse, "01110") == 0) caractere = 'J';
+        else if(strcmp(morse, "01000") == 0) caractere = 'L';
+        else if(strcmp(morse, "01100") == 0) caractere = 'P';
+        else if(strcmp(morse, "11010") == 0) caractere = 'Q';
+        else if(strcmp(morse, "00010") == 0) caractere = 'V';
+        else if(strcmp(morse, "10010") == 0) caractere = 'X';
+        else if(strcmp(morse, "10110") == 0) caractere = 'Y';
+        else if(strcmp(morse, "11000") == 0) caractere = 'Z';
+        else caractere = '?';
     }
     if(w_size == 5){
         if(strcmp(morse, "11111") == 0) caractere = '0';
-        if(strcmp(morse, "01111") == 0) caractere = '1';
-        if(strcmp(morse, "00111") == 0) caractere = '2';
-        if(strcmp(morse, "00011") == 0) caractere = '3';
-        if(strcmp(morse, "00001") == 0) caractere = '4';
-        if(strcmp(morse, "00000") == 0) caractere = '5';
-        if(strcmp(morse, "10000") == 0) caractere = '6';
-        if(strcmp(morse, "11000") == 0) caractere = '7';
-        if(strcmp(morse, "11100") == 0) caractere = '8';
-        if(strcmp(morse, "11110") == 0) caractere = '9';
-//        else caractere = '?';
+        else if(strcmp(morse, "01111") == 0) caractere = '1';
+        else if(strcmp(morse, "00111") == 0) caractere = '2';
+        else if(strcmp(morse, "00011") == 0) caractere = '3';
+        else if(strcmp(morse, "00001") == 0) caractere = '4';
+        else if(strcmp(morse, "00000") == 0) caractere = '5';
+        else if(strcmp(morse, "10000") == 0) caractere = '6';
+        else if(strcmp(morse, "11000") == 0) caractere = '7';
+        else if(strcmp(morse, "11100") == 0) caractere = '8';
+        else if(strcmp(morse, "11110") == 0) caractere = '9';
+        else caractere = '?';
     }
 
 }
@@ -75,7 +75,8 @@ char def_morse(void){
         signal = '2';
     }
     else signal ='0';
-    __delay_cycles(10000);
+    delay(10);
+//    __delay_cycles(30000);
     return signal;
 }
 
@@ -89,25 +90,6 @@ void form_morse(char signal){
 void form_string(void){
     if(position < 33) phrase[position] = caractere;
 }
-
-//// Interrupção da porta P1
-//#pragma vector = 47
-//__interrupt void P1(void){
-//    unsigned int a = __even_in_range(P1IV, 0x4);
-//    switch(a){
-//    case 0: break;
-//    case 2: break;
-//    case 4:
-//        position ++;
-//        clear_morse();
-//        caractere = ' ';
-//        w_size = 0;
-//        while((P1IN&BIT1) == 0);
-//        __delay_cycles(1000000);
-//        break;
-//    default: break;
-//    }
-//}
 
 void clear_morse(void){
     unsigned int z =0;
@@ -126,7 +108,126 @@ void clear_phrase(void){
 void clear_all(void){
     clear_morse();
     clear_phrase();
-    caractere = 0x0;
+    caractere = ' ';
     w_size = 0;
     position = 0;
+}
+
+// 0 - ponto; 1- traço;
+int char_to_morse(char caract){
+    unsigned int n_morse;
+    if(caract == ' ') n_morse = 22222;
+    if(caract == 0) n_morse = 22222;
+    if(caract == 'A') n_morse = 22210;
+    if(caract == 'B') n_morse = 20001;
+    if(caract == 'C') n_morse = 20101;
+    if(caract == 'D') n_morse = 22001;
+    if(caract == 'E') n_morse = 22220;
+    if(caract == 'F') n_morse = 20100;
+    if(caract == 'G') n_morse = 22011;
+    if(caract == 'H') n_morse = 20000;
+    if(caract == 'I') n_morse = 22200;
+    if(caract == 'J') n_morse = 21110;
+    if(caract == 'K') n_morse = 22101;
+    if(caract == 'L') n_morse = 20010;
+    if(caract == 'M') n_morse = 22211;
+    if(caract == 'N') n_morse = 22201;
+    if(caract == 'O') n_morse = 22111;
+    if(caract == 'P') n_morse = 20110;
+    if(caract == 'Q') n_morse = 21011;
+    if(caract == 'R') n_morse = 22010;
+    if(caract == 'S') n_morse = 22000;
+    if(caract == 'T') n_morse = 22221;
+    if(caract == 'U') n_morse = 22100;
+    if(caract == 'V') n_morse = 21000;
+    if(caract == 'W') n_morse = 22110;
+    if(caract == 'X') n_morse = 21001;
+    if(caract == 'Y') n_morse = 21101;
+    if(caract == 'Z') n_morse = 20011;
+    if(caract == '0') n_morse = 11111;
+    if(caract == '1') n_morse = 11110;
+    if(caract == '2') n_morse = 11100;
+    if(caract == '3') n_morse = 11000;
+    if(caract == '4') n_morse = 10000;
+    if(caract == '5') n_morse = 00000;
+    if(caract == '6') n_morse = 00001;
+    if(caract == '7') n_morse = 00011;
+    if(caract == '8') n_morse = 00111;
+    if(caract == '9') n_morse = 01111;
+
+    return n_morse;
+}
+
+void insert_sw2(void){
+    unsigned long int counter = 0;
+    TA0R = 0;
+    while((P1IN&BIT1) == 0);
+    counter = TA0R;
+
+    if(counter > 1300) {
+        clear_lcd();
+        print_string("Enviando        mensagem...");
+        send_string();
+        delay(3000);
+        clear_lcd();
+        print_string("Enviado!");
+        delay(3000);
+        clear_lcd();
+        print_string(phrase);
+    }
+    else{
+        if(caractere == 0) caractere = ' ';
+        if(space > 0){
+            form_string();
+            print_string(phrase);
+        }
+        space++;
+        position++;
+        clear_morse();
+        caractere = ' ';
+        w_size = 0;
+    }
+}
+
+void form_morse_rcv(void){
+    int t =0;
+    for(;t<32;t++){
+        morse_rcv[t] = char_to_morse(rcvd_phrase[t]);
+    }
+}
+
+void buzzer(int type){
+    unsigned int limit;
+    if(type != 2){
+        if (type == 0){
+            limit = 200;
+        }
+        if(type == 1){
+            limit = 600;
+        }
+//        TA1R = 0;
+//        TA1CCTL2 &=~CCIFG;
+        P8OUT |= BIT1;
+//        while((TA1CCTL2&CCIFG)==0);
+        delay(limit);
+        P8OUT &=~BIT1;
+//        TA1CCTL2 &=~CCIFG;
+        delay(300);
+    }
+}
+
+void morse_buzzer(int m_code){
+    unsigned int tm;
+    for(tm = 0; tm < 5; tm++){
+        buzzer(m_code%10);
+        m_code = m_code/10;
+    }
+}
+
+void m_rcvd_buzzer(void){
+    unsigned int at = 0;
+    form_morse_rcv();
+    for(;at<32;at++){
+        morse_buzzer(morse_rcv[at]);
+    }
 }

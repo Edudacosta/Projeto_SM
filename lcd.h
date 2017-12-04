@@ -20,11 +20,11 @@
 #define BIT_D7   BIT7
 
 
-void init_lcd(void);;
-void write_nibble(char nibble);
-void write_byte(char byte, int rs);
-void LCD_BL_on(void);
-void write_string(char*);
-void clear_lcd(void);
+
+void init_lcd(void);                    // Inicializa o LCD
+void write_nibble(char nibble);         // Envia um nibble
+void write_byte(char byte, int rs);     // Utiliza a função write_nibble duas vezes para enviar um byte. rs = 1 corresponde a escrita no LCD, se rs = 0, corresponde uma instrução
+void clear_lcd(void);                   // Limpa o mostrador, e volta para a posição 0
+void print_string(char*);               // Receve uma string e escreve nos 32 espaços do LCD
 
 #endif /* LCD_H_ */

@@ -49,14 +49,24 @@ void init_lcd(void){
     __delay_cycles(10);                 // (display parado cursor anda)
 }
 
-//void print_string(char *string, int size){
-//    int t = size;
-//    for(;t>=0; i--){
-//        write_byte(string[t],0x1);
-//    }
-//}
 
 void clear_lcd(void){
     write_byte(1, 0);
+}
+
+void print_string(char *string){
+    unsigned int i = 0;
+    write_byte(0x80,0);
+    while(string[i] != 0 && i < 16){
+        write_byte(string[i], 1);
+        i++;
+    }
+    if(i == 16){
+        write_byte(0xC0, 0);
+        while(string[i] != 0 && i < 32){
+            write_byte(string[i], 1);
+            i++;
+        }
+    }
 }
 

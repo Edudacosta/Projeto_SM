@@ -39,4 +39,17 @@ void config_sw(void){
 void config_timers(void){
     TA0EX0 |= TAIDEX_0;
     TA0CTL = (TASSEL_1 | TACLR | ID_3 | MC_2); // ACLK dividido por 8, clock = 4096Hz
+
+    TA1EX0 |= TAIDEX_0;
+    TA1CTL = (TASSEL_1 | TACLR | ID_3 | MC_1); // ACLK dividido por 8, clock = 4096Hz
+    TA1CCR0 = 3000;
  }
+
+void delay(int time){
+    int count_d = (time * 4);
+    TA0CCR3 = count_d;
+    TA0R = 0;
+    TA0CCTL3 &= ~CCIFG;
+    while((TA0CCTL3&CCIFG) == 0);
+    return;
+}

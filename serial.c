@@ -42,3 +42,39 @@ void PCF_write(char dado){
     while ( (UCB0CTL1 & UCTXSTP) == UCTXSTP);   //Esperar STOP
     __delay_cycles(1000);                                  //Atraso p/ escravo perceber stop
 }
+
+void config_uart(void){
+    UCA0CTL1 =  UCSWRST;    // RESET
+    UCA0CTL1 = UCSSEL_1;    // ACLK DE 32kHz
+
+    UCA0BRW =  3;
+    UCA0MCTL = UCBRS_3;
+
+    //Configurar Portas
+    //  TX
+    P3DIR |= BIT3;
+    P3OUT |= BIT3;
+    P3SEL |= BIT3;
+
+    // RX
+    P3DIR &= ~BIT4;
+    P3OUT |= BIT4;
+    P3REN |= BIT4;
+    P3SEL |= BIT4;
+
+    UCA0CTL1 &= ~UCSWRST;
+
+}
+
+void send_string(void){
+    unsigned int i=0;
+    while(i<32){
+
+            UCA0TXBUF = phrase[i];
+//            __delay_cycles(400);
+            while((UCA0IFG & UCTXIFG)==0);
+            UCA0IFG &= ~UCTXIFG;
+            i++;
+        }
+}
+

@@ -9,6 +9,7 @@
 #define SERIAL_H_
 
 #include<msp430.h>
+#include<conversion.h>
 
 // I2C pins
 #define SDA_SEL     P3SEL
@@ -31,5 +32,7 @@
 
 void config_I2C(void);          // Configura pinos p/ I2C
 void PCF_write(char dado);      // Escreve na porta PCF
+void config_uart(void);         // Configura UART para tranferencia de dados
+void send_string(void);         // Envia mensagem pela porta serial UART
 
 #endif /* SERIAL_H_ */
